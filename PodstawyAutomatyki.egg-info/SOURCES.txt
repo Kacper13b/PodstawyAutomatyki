@@ -1,0 +1,8 @@
+setup.py
+PodstawyAutomatyki.egg-info/PKG-INFO
+PodstawyAutomatyki.egg-info/SOURCES.txt
+PodstawyAutomatyki.egg-info/dependency_links.txt
+PodstawyAutomatyki.egg-info/top_level.txt
+backend/__init__.py
+web/__init__.py
+web/app.py
