@@ -13,7 +13,6 @@ def count_heat_loss(index):
 
 
 def count_error(index):
-    print(index)
     config.control_error_list[index] = config.get_temperature_goal() - config.get_current_water_temperature()
 
 
@@ -28,10 +27,10 @@ def count_control_quantity_value(index):
 
 def append_element_to_control_quantity_list(index):
     #print(minmax(config.control_quantity_minimum, config.control_quantity_maximum, count_control_quantity_value(index)))
-    try:
-        config.get_control_quantity()[index] = minmax(config.control_quantity_minimum, config.control_quantity_maximum, count_control_quantity_value(index))
-    except ValueError:
-        print("valErr")
+    # try:
+    config.get_control_quantity()[index] = minmax(config.control_quantity_minimum, config.control_quantity_maximum, count_control_quantity_value(index))
+    # except ValueError:
+    #     print("valErr")
 
 
 def find_delta_error(index):
@@ -39,9 +38,7 @@ def find_delta_error(index):
 
 
 def update_temperature(index):
-    config.set_current_water_temperature(
-        (config.get_delivered_heat()[index] - config.get_heat_loss()) / config.Cw * config.mass + config.get_current_water_temperature()
-    )
+    config.set_current_water_temperature((config.get_delivered_heat()[index] - config.get_heat_loss()[index]) / config.Cw * config.mass + config.get_current_water_temperature())
 
 
 def count_heat_gain(index):
@@ -53,10 +50,9 @@ def count_heat_gain(index):
 def simulation():
     config.initialize_simulation_cycles()
     config.initialize_arrays()
-    print(config.get_simulation_cycles())
-    for index in range(np.int(config.get_simulation_cycles())):
+    for index in range(int(config.get_simulation_cycles())):
         count_error(index)
-        sum_errors(config.get_control_error_list()[index])
+        sum_errors(config.control_error_list[index])
         append_element_to_control_quantity_list(index)
         count_heat_loss(index)
         count_heat_gain(index)

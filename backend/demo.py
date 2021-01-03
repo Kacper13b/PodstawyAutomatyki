@@ -10,6 +10,7 @@ def set_demo_config():
     config.set_current_water_temperature(24)
     config.initialize_simulation_cycles()
     config.set_thermal_capacity(200)
+    config.set_thermal_resistance(10)
 
 
 def demo():

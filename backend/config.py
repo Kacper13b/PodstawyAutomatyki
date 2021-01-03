@@ -12,12 +12,12 @@ class Config:
     frequency = None
     delivered_heat_list = None
     heat_loss_list = None
-    thermal_resistance = np.float32()
+    thermal_resistance = None
     simulation_cycles = None
     control_error_list = None           # Uchyb regulacji
     control_quantity_list = None        # Wielkość sterująca
     temperature_list = None
-    sum_of_errors = 0.0
+    sum_of_errors = 0
     control_quantity_minimum = 0
     control_quantity_maximum = 10
     mass = 3
@@ -109,10 +109,11 @@ class Config:
         return self.control_quantity_list
 
     def initialize_simulation_cycles(self):
-        self.simulation_cycles = np.float32(self.time * 60.0 * 60.0)
+        self.simulation_cycles = (self.time * 60.0 * 60.0)
 
     def initialize_arrays(self):
-        self.control_error_list = [0.0] * int(self.get_simulation_cycles())
+        print(self.simulation_cycles)
+        self.control_error_list = [0] * int(self.get_simulation_cycles())
         self.control_quantity_list = [0.0] * int(self.get_simulation_cycles())
         self.heat_loss_list = [0.0] * int(self.get_simulation_cycles())
         self.temperature_list = [0.0] * int(self.get_simulation_cycles() + 1)
@@ -126,4 +127,3 @@ config = Config()
 # config.initialize_simulation_cycles()
 # config.initialize_arrays()
 # print(config.control_quantity.size)
-print(np.float32("32") * 2.0)
