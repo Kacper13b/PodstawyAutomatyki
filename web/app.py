@@ -29,6 +29,7 @@ def my_form_post():
     config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
     config.set_time(np.float32(request.form['ambient_temperature']))
     config.set_initial_temperature(np.float32(request.form['ambient_temperature']))
+    demo()
     # return render_template('simulation.html', title='simulation', data=config)
     return 'Działa'
 

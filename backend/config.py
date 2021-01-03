@@ -3,25 +3,35 @@ import numpy as np
 
 class Config:
 
-    thermal_capacity = np.float32()
-    current_water_temperature = np.float32()
-    temperature_goal = np.float32()
-    initial_temperature = np.float32()
-    time = np.float32()
-    ambient_temperature = np.float32()
-    time_constant = np.int(555)
-    frequency = np.float32()
-    delivered_heat = np.float32()
-    heat_loss = np.float32()
+    thermal_capacity = None
+    current_water_temperature = None
+    temperature_goal = None
+    initial_temperature = None
+    time = None
+    ambient_temperature = None
+    frequency = None
+    delivered_heat_list = None
+    heat_loss_list = None
     thermal_resistance = np.float32()
     simulation_cycles = None
     control_error_list = None           # Uchyb regulacji
     control_quantity_list = None        # Wielkość sterująca
     temperature_list = None
+    sum_of_errors = 0.0
+    control_quantity_minimum = 0
+    control_quantity_maximum = 10
+    mass = 3
 
+    Cw = 4200
     Kp = 1110
     Ki = 0.05
     Kd = 5
+    Tp = None
+    Ti = 0.25
+    Td = 0.01
+
+    def get_sum_of_errors(self):
+        return self.sum_of_errors
 
     def set_thermal_capacity(self, inputted_value):
         self.thermal_capacity = inputted_value
@@ -60,10 +70,10 @@ class Config:
         return self.frequency
 
     def set_delivered_heat(self, inputted_value):
-        self.delivered_heat = inputted_value
+        self.delivered_heat_list = inputted_value
 
     def get_delivered_heat(self):
-        return self.delivered_heat
+        return self.delivered_heat_list
 
     def set_current_water_temperature(self, inputted_value):
         self.current_water_temperature = inputted_value
@@ -72,10 +82,10 @@ class Config:
         return self.current_water_temperature
 
     def set_heat_loss(self, inputted_value):
-        self.heat_loss = inputted_value
+        self.heat_loss_list = inputted_value
 
     def get_heat_loss(self):
-        return self.heat_loss
+        return self.heat_loss_list
 
     def set_temperature_goal(self, inputted_value):
         self.temperature_goal = inputted_value
@@ -102,10 +112,13 @@ class Config:
         self.simulation_cycles = np.float32(self.time * 60.0 * 60.0)
 
     def initialize_arrays(self):
-        self.control_error_list = np.array([0.0] * int(self.get_simulation_cycles()))
-        self.control_quantity_list = np.array([0.0] * int(self.get_simulation_cycles()))
-        self.temperature_list = np.array([0.0] * int(self.get_simulation_cycles() + 1))
+        self.control_error_list = [0.0] * int(self.get_simulation_cycles())
+        self.control_quantity_list = [0.0] * int(self.get_simulation_cycles())
+        self.heat_loss_list = [0.0] * int(self.get_simulation_cycles())
+        self.temperature_list = [0.0] * int(self.get_simulation_cycles() + 1)
+        self.delivered_heat_list = [0.0] * int(self.get_simulation_cycles())
         self.temperature_list[0] = self.get_initial_temperature()
+        self.Tp = 1 / self.simulation_cycles
 
 
 config = Config()
