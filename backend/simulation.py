@@ -58,3 +58,6 @@ def simulation():
         count_heat_gain(index)
         update_temperature(index)
         print(config.current_water_temperature)
+
+def temp():
+    pass
