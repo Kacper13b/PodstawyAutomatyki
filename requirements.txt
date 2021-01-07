@@ -2,3 +2,4 @@ numpy
 bokeh
 pandas
 flask
+matplotlib

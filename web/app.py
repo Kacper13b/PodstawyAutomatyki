@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from backend.config import config
 from backend.demo import demo, set_demo_config
 from backend import demo
+from backend.plots import plots
 import numpy as np
 
 app = Flask(__name__)
@@ -38,6 +39,7 @@ def my_form_post():
 def demo_web():
     set_demo_config()
     demo()
+    plots()
     return "It works"
 
 
