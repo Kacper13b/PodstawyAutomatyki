@@ -18,8 +18,8 @@ def count_error(index):
 
 def sum_errors(index):
     # print(index)
-    print(config.get_control_error_list()[index])
-    # config.sum_of_errors += config.get_control_error_list()[index]
+    #print(config.get_control_error_list()[index])
+    config.sum_of_errors += config.get_control_error_list()[index]
 
 
 def count_control_quantity_value(index):
@@ -45,26 +45,29 @@ def update_temperature(index):
 
 
 def count_heat_gain(index):
-    config.delivered_heat_list[index] = 0.05 * config.get_control_quantity()[index]
+    config.delivered_heat_list[index] = 1600 * config.get_control_quantity()[index]
 
 
 def simulation():
     config.initialize_simulation_cycles()
     config.initialize_arrays()
-    print(range(int(config.get_simulation_cycles())))
+    #print(range(int(config.get_simulation_cycles())))
     for index in range(int(config.get_simulation_cycles())):
-        print(index)
-    #     count_error(index)
-    #     sum_errors(config.control_error_list[index])
-    #
-    #     append_element_to_control_quantity_list(index)
-    #
-    #     count_heat_gain(index)
-    #     count_heat_loss(index)
-    #
-    #     update_temperature(index)
+        #print(index)
+        index = int(index)
+        count_error(index)
+        sum_errors(index)
 
-        #print(config.current_water_temperature)
+        append_element_to_control_quantity_list(index)
+
+        count_heat_gain(index)
+        count_heat_loss(index)
+
+        index = int(index)
+        #print(index)
+        update_temperature(index)
+
+        print(config.current_water_temperature)
 
 
 def temp():
