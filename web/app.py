@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from backend.config import config
 from backend.demo import demo, set_demo_config
-from backend.plots import plot
+from backend.plots import generate_plots
 import numpy as np
 
 app = Flask(__name__)
@@ -30,7 +30,6 @@ def my_form_post():
     config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
     config.set_time(np.float32(request.form['ambient_temperature']))
     config.set_initial_temperature(np.float32(request.form['ambient_temperature']))
-    demo()
     # return render_template('simulation.html', title='simulation', data=config)
     return 'Działa'
 
@@ -39,8 +38,8 @@ def my_form_post():
 def demo_web():
     set_demo_config()
     demo()
-    plot()
-    return "It works"
+    generate_plots()
+    return render_template('plots.html', title='plots')
 
 
 if __name__ == '__main__':

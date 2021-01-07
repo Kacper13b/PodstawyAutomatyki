@@ -1,10 +1,7 @@
-import numpy as np
-
-
 class Config:
+
     time_constant = 555
     K = 0.06
-    Cw = 4200
     Kp = 1110
     Ki = 0.05
     Kd = 5
@@ -23,8 +20,8 @@ class Config:
     delivered_heat_list = None
     heat_loss_list = None
     simulation_cycles = None
-    control_error_list = None           # Uchyb regulacji
-    control_quantity_list = None        # Wielkość sterująca
+    control_error_list = None  # Uchyb regulacji
+    control_quantity_list = None  # Wielkość sterująca
     temperature_list = None
     sum_of_errors = 0
 
@@ -34,14 +31,14 @@ class Config:
     def get_sum_of_errors(self):
         return self.sum_of_errors
 
-    def set_thermal_capacity(self, inputted_value):
-        self.thermal_capacity = inputted_value
+    # def set_thermal_capacity(self, inputted_value):
+    #     self.thermal_capacity = inputted_value
 
     def get_thermal_capacity(self):
         return self.thermal_capacity
 
-    def set_thermal_resistance(self, inputted_value):
-        self.thermal_resistance = inputted_value
+    # def set_thermal_resistance(self, inputted_value):
+    #     self.thermal_resistance = inputted_value
 
     def get_thermal_resistance(self):
         return self.thermal_resistance
@@ -64,12 +61,6 @@ class Config:
     def get_time_constant(self):
         return self.time_constant
 
-    def set_frequency(self, inputted_value):
-        self.frequency = inputted_value
-
-    def get_frequency(self):
-        return self.frequency
-
     def set_delivered_heat(self, inputted_value):
         self.delivered_heat_list = inputted_value
 
@@ -82,10 +73,10 @@ class Config:
     def get_current_water_temperature(self):
         return self.current_water_temperature
 
-    def set_heat_loss(self, inputted_value):
+    def set_heat_loss_list(self, inputted_value):
         self.heat_loss_list = inputted_value
 
-    def get_heat_loss(self):
+    def get_heat_loss_list(self):
         return self.heat_loss_list
 
     def set_temperature_goal(self, inputted_value):
@@ -106,14 +97,14 @@ class Config:
     def get_control_error_list(self):
         return self.control_error_list
 
-    def get_control_quantity(self):
+    def get_control_quantity_list(self):
         return self.control_quantity_list
 
     def initialize_simulation_cycles(self):
         self.simulation_cycles = (self.time * 60 * 60)
 
     def initialize_arrays(self):
-        #(self.simulation_cycles)
+        # (self.simulation_cycles)
         self.control_error_list = [0] * int(self.get_simulation_cycles())
         self.control_quantity_list = [0] * int(self.get_simulation_cycles())
         self.heat_loss_list = [0] * int(self.get_simulation_cycles())
@@ -128,7 +119,3 @@ class Config:
 
 
 config = Config()
-# config.set_time(1.0)
-# config.initialize_simulation_cycles()
-# config.initialize_arrays()
-# print(config.control_quantity.size)

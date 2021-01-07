@@ -1,6 +1,4 @@
 from backend.config import config
-import numpy as np
-import math
 
 
 def minmax(minimum, maximum, value):
@@ -8,8 +6,8 @@ def minmax(minimum, maximum, value):
 
 
 def count_heat_loss(index):
-    config.get_heat_loss()[index] = (config.get_current_water_temperature() - config.get_ambient_temperature()) \
-                                    / config.get_thermal_resistance()
+    config.get_heat_loss_list()[index] = (config.get_current_water_temperature() - config.get_ambient_temperature()) \
+                                         / config.get_thermal_resistance()
 
 
 def count_error(index):
@@ -17,8 +15,6 @@ def count_error(index):
 
 
 def sum_errors(index):
-    # print(index)
-    # print(config.get_control_error_list()[index])
     config.sum_of_errors += config.get_control_error_list()[index]
 
 
@@ -29,23 +25,25 @@ def count_control_quantity_value(index):
 
 def append_element_to_control_quantity_list(index):
     # config.get_control_quantity()[index] = minmax(config.control_quantity_minimum, config.control_quantity_maximum, count_control_quantity_value(index))
-    config.get_control_quantity()[index] = config.Kp * (config.get_control_error_list()[index] + config.Tp / config.Ti * config.get_sum_of_errors() + config.Td / config.Tp * find_delta_error(index))
+    config.get_control_quantity_list()[index] = config.Kp * (config.get_control_error_list()[index] + config.Tp /
+                                                             config.Ti * config.get_sum_of_errors() + config.Td /
+                                                             config.Tp * find_delta_error(index))
 
 
 def find_delta_error(index):
-    if (index == 0):
+    if index == 0:
         return config.get_control_error_list()[0]
     return config.get_control_error_list()[index] - config.get_control_error_list()[index - 1]
 
 
 def update_temperature(index):
-    # config.set_current_water_temperature((config.get_delivered_heat()[index] - config.get_heat_loss()[index]) / config.Cw * config.mass + config.get_current_water_temperature())
-    config.temperature_list[index+1] = ((config.get_delivered_heat()[index] - config.get_heat_loss()[index]) / config.get_thermal_capacity()) * config.Tp +config.temperature_list[index]
-    config.set_current_water_temperature(config.temperature_list[index+1])
+    config.temperature_list[index + 1] = ((config.get_delivered_heat()[index] - config.get_heat_loss_list()[index]) /
+                                          config.get_thermal_capacity()) * config.Tp + config.temperature_list[index]
+    config.set_current_water_temperature(config.temperature_list[index + 1])
 
 
 def count_heat_gain(index):
-    config.delivered_heat_list[index] = 1600 * config.get_control_quantity()[index]
+    config.delivered_heat_list[index] = 1600 * config.get_control_quantity_list()[index]
 
 
 def simulation():
@@ -58,5 +56,3 @@ def simulation():
         count_heat_gain(index)
         count_heat_loss(index)
         update_temperature(index)
-
-
