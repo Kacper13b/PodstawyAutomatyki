@@ -110,15 +110,15 @@ class Config:
         return self.control_quantity_list
 
     def initialize_simulation_cycles(self):
-        self.simulation_cycles = (self.time * 60.0 * 60.0)
+        self.simulation_cycles = (self.time * 60 * 60)
 
     def initialize_arrays(self):
-        print(self.simulation_cycles)
+        #(self.simulation_cycles)
         self.control_error_list = [0] * int(self.get_simulation_cycles())
-        self.control_quantity_list = [0.0] * int(self.get_simulation_cycles())
-        self.heat_loss_list = [0.0] * int(self.get_simulation_cycles())
-        self.temperature_list = [0.0] * int(self.get_simulation_cycles() + 1)
-        self.delivered_heat_list = [0.0] * int(self.get_simulation_cycles())
+        self.control_quantity_list = [0] * int(self.get_simulation_cycles())
+        self.heat_loss_list = [0] * int(self.get_simulation_cycles())
+        self.temperature_list = [0] * int(self.get_simulation_cycles() + 1)
+        self.delivered_heat_list = [0] * int(self.get_simulation_cycles())
         self.temperature_list[0] = self.get_initial_temperature()
         self.Tp = 1 / self.simulation_cycles
 
