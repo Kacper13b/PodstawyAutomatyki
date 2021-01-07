@@ -51,9 +51,7 @@ def count_heat_gain(index):
 def simulation():
     config.initialize_simulation_cycles()
     config.initialize_arrays()
-    print(range(int(config.get_simulation_cycles())))
     for index in range(int(config.get_simulation_cycles())):
-        print(index)
         count_error(index)
         sum_errors(index)
         append_element_to_control_quantity_list(index)
@@ -61,8 +59,4 @@ def simulation():
         count_heat_loss(index)
         update_temperature(index)
 
-        print(config.current_water_temperature)
 
-
-def temp():
-    pass

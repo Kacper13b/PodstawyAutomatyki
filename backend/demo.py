@@ -14,6 +14,3 @@ def set_demo_config():
 def demo():
     simulation()
 
-
-set_demo_config()
-demo()
