@@ -2,33 +2,34 @@ import numpy as np
 
 
 class Config:
-
-    thermal_capacity = None
-    current_water_temperature = None
-    temperature_goal = None
-    initial_temperature = None
-    time = None
-    ambient_temperature = None
-    frequency = None
-    delivered_heat_list = None
-    heat_loss_list = None
-    thermal_resistance = None
-    simulation_cycles = None
-    control_error_list = None           # Uchyb regulacji
-    control_quantity_list = None        # Wielkość sterująca
-    temperature_list = None
-    sum_of_errors = 0
-    control_quantity_minimum = 0
-    control_quantity_maximum = 10
-    mass = 3
-
+    time_constant = 555
+    K = 0.06
     Cw = 4200
     Kp = 1110
     Ki = 0.05
     Kd = 5
     Tp = None
-    Ti = 0.25
-    Td = 0.01
+    Ti = Kp / Ki
+    Td = Kd / Kp
+
+    current_water_temperature = None
+    temperature_goal = None
+    initial_temperature = None
+    time = None
+    ambient_temperature = None
+    thermal_resistance = K
+    thermal_capacity = time_constant / thermal_resistance
+
+    delivered_heat_list = None
+    heat_loss_list = None
+    simulation_cycles = None
+    control_error_list = None           # Uchyb regulacji
+    control_quantity_list = None        # Wielkość sterująca
+    temperature_list = None
+    sum_of_errors = 0
+
+    control_quantity_minimum = 0
+    control_quantity_maximum = 10
 
     def get_sum_of_errors(self):
         return self.sum_of_errors
@@ -120,6 +121,10 @@ class Config:
         self.delivered_heat_list = [0.0] * int(self.get_simulation_cycles())
         self.temperature_list[0] = self.get_initial_temperature()
         self.Tp = 1 / self.simulation_cycles
+
+    def initialize(self):
+        self.initialize_simulation_cycles()
+        self.initialize_arrays()
 
 
 config = Config()
