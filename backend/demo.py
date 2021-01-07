@@ -1,5 +1,8 @@
 from backend.config import config
+from backend.plots import plot
 from backend.simulation import simulation
+from backend.plots import plot
+
 
 
 def set_demo_config():
@@ -13,4 +16,5 @@ def set_demo_config():
 
 def demo():
     simulation()
+    plot()
 
