@@ -45,7 +45,7 @@ def update_temperature(index):
 
 
 def count_heat_gain(index):
-    config.delivered_heat_list[index] = 1600 * config.get_control_quantity()[index]
+    config.delivered_heat_list[index] = 1 * config.get_control_quantity()[index]
 
 
 def simulation():
