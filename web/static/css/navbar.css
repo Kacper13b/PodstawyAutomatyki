@@ -63,5 +63,39 @@ button:hover {
     background-color: rgba(0,16,169,0.8);
 }
 
+.naglowek{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: #edf0f1;
+    text-decoration: none;
+    margin: 10px;
+    padding-top: 30px;
+    padding-left: 20px;
+
+}
+
+.opis{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #edf0f1;
+    text-decoration: none;
+    padding-top: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.opis2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #edf0f1;
+    text-decoration: none;
+    line-height: 30px;
+    padding-top: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
 
 
