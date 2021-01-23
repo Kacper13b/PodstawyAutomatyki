@@ -22,10 +22,9 @@
             </nav>
             <a class="cta" href="contact"><button>Contact</button></a>
         </header>
-    </body>
 
-    <h1>Sim</h1>
-
+    <section class="wpis-danych">
+        <h1>Symulacja</h1>
     <form action="{{ url_for('simulation_web_page') }}" method="POST">
 
             <label for="initial_temperature">Początkowa temperatura wody:</label><br>
@@ -42,5 +41,6 @@
 
         <input type="submit" value="Wykonaj symulację">
     </form>
-
+    </section>>
+    </body>
 </html>

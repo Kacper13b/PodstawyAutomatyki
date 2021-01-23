@@ -66,7 +66,7 @@ button:hover {
 .naglowek{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 25px;
     color: #edf0f1;
     text-decoration: none;
     margin: 10px;
@@ -96,6 +96,51 @@ button:hover {
     padding-top: 10px;
     padding-left: 80px;
     padding-right: 80px;
+}
+.opis2 ul
+{
+    margin-left: 50px;
+}
+
+.main_footer {
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    padding: 5px 10%;
+    background-color: #0088a9;
+    color: #edf0f1;
+}
+.wpis-danych{
+    font-family: 'Montserrat', sans-serif;
+    color: #edf0f1;
+    text-align: center;
+    margin-top: 20px;
+}
+.wpis-danych input[type=text]
+{
+    font-family: 'Montserrat', sans-serif;
+    width: 25%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+    text-align: center;
+  border: 2px solid #0088a9;
+    color: #edf0f1;
+  border-radius: 4px;
+}
+.wpis-danych input[type=submit]
+{
+    font-family: 'Montserrat', sans-serif;
+    width: 40%;
+  padding: 12px 20px;
+  margin-top: 25px;
+  box-sizing: border-box;
+  border: 2px solid #0088a9;
+    color: #edf0f1;
+    text-align: center;
+  border-radius: 4px;
 }
 
 
