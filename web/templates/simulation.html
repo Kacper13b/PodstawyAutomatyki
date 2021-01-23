@@ -1,6 +1,29 @@
-{% extends "base.html" %}
+{#{% extends "base.html" %}#}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SIMULATION</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css')}}">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul class="nav_links">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="simulation">Simulation</a></li>
+                </ul>
+            </nav>
+            <a class="cta" href="contact"><button>Contact</button></a>
+        </header>
+    </body>
+
     <h1>Sim</h1>
 
     <form action="{{ url_for('simulation_web_page') }}" method="POST">
@@ -19,4 +42,5 @@
 
         <input type="submit" value="Wykonaj symulację">
     </form>
-{% endblock %}
+
+</html>
