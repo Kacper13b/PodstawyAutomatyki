@@ -143,4 +143,20 @@ button:hover {
   border-radius: 4px;
 }
 
+.main_footer li {
+    background-color: #3d6480;
+}
+
+.main_footer span {
+    background-color: #3d6480;
+}
+
+.main_footer h2 {
+    background-color: #3d6480;
+}
+
+.main_footer ul {
+    background-color: #3d6480;
+    margin-left: 30px;
+}
 

@@ -16,5 +16,5 @@ def set_demo_config():
 
 def demo():
     simulation()
-    plot()
+    print("xxx")
 
