@@ -16,17 +16,17 @@ def home():
 
 # @app.route('/simulation')
 # def simulation_web_page():
-#     set_demo_config()
 #     return render_template('simulation.html', title='simulation', data=config)
 
 
 @app.route('/simulation', methods=['POST', 'GET'])
 def my_form_post():
-    config.set_temperature_goal(np.float32(request.form['temperature_goal']))
-    config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
-    config.set_time(np.float32(request.form['ambient_temperature']))
-    config.set_initial_temperature(np.float32(request.form['ambient_temperature']))
+    # config.set_temperature_goal(np.float32(request.form['temperature_goal']))
+    # config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
+    # config.set_time(np.float32(request.form['ambient_temperature']))
+    # config.set_initial_temperature(np.float32(request.form['ambient_temperature']))
     # return render_template('simulation.html', title='simulation', data=config)
+    set_demo_config()
     return render_template('simulation.html', title='simulation', data=config)
 
 
