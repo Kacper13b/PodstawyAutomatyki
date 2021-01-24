@@ -1,7 +1,8 @@
 from backend.config import config
 import numpy as np
 import math
-
+import pandas as pd
+from backend.data import creatDataFrame
 
 def minmax(minimum, maximum, value):
     return max(minimum, min(maximum, value))
@@ -58,5 +59,6 @@ def simulation():
         count_heat_gain(index)
         count_heat_loss(index)
         update_temperature(index)
+    dataFrame = creatDataFrame()
 
 
