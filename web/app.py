@@ -36,17 +36,25 @@ def my_form_post():
 def demo_web():
     set_demo_config()
     demo()
-    fig = make_subplots(rows=1, cols=2)
+    fig = make_subplots(rows=2, cols=3)
 
     fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.temperature_list,
                              mode='lines',
                              name='Temperatura', line=dict(color="orange", width=2)),row=1, col=1)
-    # fig.update_layout(
-    #     title_text=str("Temperatura"), hovermode="x unified", xaxis_title="Czas", yaxis_title="Temperatura"
-    # )
+
     fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.delivered_heat_list,
                              mode='lines',
-                             name='Dostarczone ciepło', line=dict(color="orange", width=2)), row=1, col=2)
+                             name='Dostarczone ciepło', line=dict(color="red", width=2)), row=1, col=2)
+
+    fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.control_error_list,
+                             mode='lines',
+                             name='Uchyb', line=dict(color="blue", width=2)), row=1, col=3)
+    fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.control_quantity_list,
+                             mode='lines',
+                             name='Control Quantity', line=dict(color="green", width=2)), row=2, col=1)
+    fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.heat_loss_list,
+                             mode='lines',
+                             name='Strata ciepła', line=dict(color="black", width=2)), row=2, col=2)
     fig.update_layout(
         title_text=str("Wykres")
     )
