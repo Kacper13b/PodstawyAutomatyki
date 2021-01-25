@@ -4,6 +4,7 @@ from backend.demo import demo, set_demo_config
 from backend.plots import plot
 import numpy as np
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import plotly.express as px
 
 app = Flask(__name__)
@@ -35,12 +36,19 @@ def my_form_post():
 def demo_web():
     set_demo_config()
     demo()
-    fig = go.Figure()
+    fig = make_subplots(rows=1, cols=2)
+
     fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.temperature_list,
                              mode='lines',
-                             name='Temperatura', line=dict(color="orange", width=2)))
+                             name='Temperatura', line=dict(color="orange", width=2)),row=1, col=1)
+    # fig.update_layout(
+    #     title_text=str("Temperatura"), hovermode="x unified", xaxis_title="Czas", yaxis_title="Temperatura"
+    # )
+    fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.delivered_heat_list,
+                             mode='lines',
+                             name='Dostarczone ciepło', line=dict(color="orange", width=2)), row=1, col=2)
     fig.update_layout(
-        title_text=str("Temperatura"), hovermode="x unified", xaxis_title="Czas", yaxis_title="Temperatura"
+        title_text=str("Wykres")
     )
     fig.write_html("web/templates/plots.html")
     return render_template("plots.html")
