@@ -62,3 +62,10 @@ def simulation():
     dataFrame = creatDataFrame()
 
 
+def set_simulation_config(time, initial_temp, temp_goal, ambient_temp):
+    config.set_time(time)
+    config.set_initial_temperature(initial_temp)
+    config.set_temperature_goal(temp_goal)
+    config.set_ambient_temperature(ambient_temp)
+    config.set_current_water_temperature(ambient_temp)
+    config.initialize_simulation_cycles()

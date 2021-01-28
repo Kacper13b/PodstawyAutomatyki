@@ -38,10 +38,18 @@
             <label for="ambient_temperature">Temperatura otoczenia:</label><br>
             <input type="text" id="ambient_temperature" name="ambient_temperature" value="{{ data.get_ambient_temperature() }}"><br>
 
-        <input type="submit" value="Wykonaj symulację">
+        <input type="button" value="Wykonaj symulację">
+        <a href="/demo">Click me</a>
+        <button onclick="myFunction()">Click me!!!!!</button>
     </form>
-    </section>>
+        <script>
+            function myFunction() {
+                <form action="{{ url_for('aaa') }}" method="POST">
+
+                </form>
+}
+        </script>
+    </section>
     </body>
 
-    {% include "plots.html" %}
 </html>

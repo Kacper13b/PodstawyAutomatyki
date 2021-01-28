@@ -6,6 +6,7 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
+from backend.simulation import set_simulation_config
 
 app = Flask(__name__)
 
@@ -17,13 +18,17 @@ def home():
 
 @app.route('/simulation', methods=['POST', 'GET'])
 def my_form_post():
-    config.set_temperature_goal(np.float32(request.form['temperature_goal']))
-    config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
-    config.set_time(np.float32(request.form['time']))
-    config.set_initial_temperature(np.float32(request.form['initial_temperature']))
+    #set_demo_config()
     return render_template('simulation.html', title='simulation', data=config)
 
-
+@app.route('/simulation', methods=['POST', 'GET'])
+def aaa():
+    temp = int(request.form['temperature_goal'])
+    ambient_temp = int(request.form['ambient_temperature'])
+    time = int(request.form['time'])
+    init_temp = int(request.form['initial_temperature'])
+    set_simulation_config(time, init_temp, temp, ambient_temp)
+    print("AAAAA")
 
 
 @app.route('/demo', methods=['POST', 'GET'])
@@ -59,15 +64,5 @@ def demo_web():
 
 
 if __name__ == '__main__':
-    set_demo_config()
-    demo()
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.temperature_list,
-                             mode='lines',
-                             name='Temperatura', line=dict(color="orange", width=2)))
-    fig.update_layout(
-        title_text=str("Temperatura"), hovermode="x unified", xaxis_title="Czas", yaxis_title="Temperatura"
-    )
-    fig.write_html("web/templates/plots.html")
     app.run(debug=True)
 
