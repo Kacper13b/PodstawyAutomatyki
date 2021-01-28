@@ -27,28 +27,19 @@
     <form action="{{ url_for('my_form_post') }}" method="POST">
 
             <label for="initial_temperature">Początkowa temperatura wody:</label><br>
-            <input type="text" id="initial_temperature" name="initial_temperature" value="{{ data.get_initial_temperature() }}"><br>
+            <input type="text" id="initial_temperature" name="initial_temperature" value={{ data.get_initial_temperature() }}><br>
 
             <label for="temperature_goal">Temperatura końcowa:</label><br>
-            <input type="text" id="temperature_goal" name="temperature_goal" value="{{ data.get_temperature_goal() }}"><br>
+            <input type="text" id="temperature_goal" name="temperature_goal" value={{ data.get_temperature_goal() }}><br>
 
             <label for="time">Czas trwania symulacji (w godzinach):</label><br>
-            <input type="text" id="time" name="time" value="{{ data.get_time() }}"><br>
+            <input type="text" id="time" name="time" value={{ data.get_time() }}><br>
 
             <label for="ambient_temperature">Temperatura otoczenia:</label><br>
-            <input type="text" id="ambient_temperature" name="ambient_temperature" value="{{ data.get_ambient_temperature() }}"><br>
+            <input type="text" id="ambient_temperature" name="ambient_temperature" value={{ data.get_ambient_temperature() }}><br>
 
-        <input type="button" value="Wykonaj symulację">
-        <a href="/demo">Click me</a>
-        <button onclick="myFunction()">Click me!!!!!</button>
+        <input type="submit" value="Wykonaj symulację">
     </form>
-        <script>
-            function myFunction() {
-                <form action="{{ url_for('aaa') }}" method="POST">
-
-                </form>
-}
-        </script>
     </section>
     </body>
 
