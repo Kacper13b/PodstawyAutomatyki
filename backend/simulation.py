@@ -24,18 +24,18 @@ def sum_errors(index):
 
 
 def count_control_quantity_value(index):
-    return config.Kp * (config.get_control_error_list()[index] + config.Tp /
-                        config.Ti * config.get_sum_of_errors() + config.Td / config.Tp * find_delta_error(index))
+    return config.Kp * (config.get_control_error_list()[index] + (config.Tp /
+                        config.Ti) * config.get_sum_of_errors() + (config.Td / config.Tp) * find_delta_error(index))
 
 
 def append_element_to_control_quantity_list(index):
-    # config.get_control_quantity()[index] = minmax(config.control_quantity_minimum, config.control_quantity_maximum, count_control_quantity_value(index))
-    config.get_control_quantity()[index] = config.Kp * (config.get_control_error_list()[index] + config.Tp / config.Ti * config.get_sum_of_errors() + config.Td / config.Tp * find_delta_error(index))
+    config.get_control_quantity()[index] = minmax(config.control_quantity_minimum, config.control_quantity_maximum, count_control_quantity_value(index))
+    #config.get_control_quantity()[index] = config.Kp * (config.get_control_error_list()[index] + config.Tp / config.Ti * config.get_sum_of_errors() + config.Td / config.Tp * find_delta_error(index))
 
 
 def find_delta_error(index):
     if (index == 0):
-        return config.get_control_error_list()[0]
+        return 0.1
     return config.get_control_error_list()[index] - config.get_control_error_list()[index - 1]
 
 
@@ -46,7 +46,7 @@ def update_temperature(index):
 
 
 def count_heat_gain(index):
-    config.delivered_heat_list[index] = 1 * config.get_control_quantity()[index]
+    config.delivered_heat_list[index] = 20 * config.get_control_quantity()[index]
 
 
 def simulation():

@@ -15,20 +15,14 @@ def home():
     return render_template('home.html')
 
 
-# @app.route('/simulation')
-# def simulation_web_page():
-#     return render_template('simulation.html', title='simulation', data=config)
-
-
 @app.route('/simulation', methods=['POST', 'GET'])
 def my_form_post():
-    # config.set_temperature_goal(np.float32(request.form['temperature_goal']))
-    # config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
-    # config.set_time(np.float32(request.form['ambient_temperature']))
-    # config.set_initial_temperature(np.float32(request.form['ambient_temperature']))
-    # return render_template('simulation.html', title='simulation', data=config)
-    set_demo_config()
+    config.set_temperature_goal(np.float32(request.form['temperature_goal']))
+    config.set_ambient_temperature(np.float32(request.form['ambient_temperature']))
+    config.set_time(np.float32(request.form['time']))
+    config.set_initial_temperature(np.float32(request.form['initial_temperature']))
     return render_template('simulation.html', title='simulation', data=config)
+
 
 
 
@@ -51,7 +45,7 @@ def demo_web():
                              name='Uchyb', line=dict(color="blue", width=2)), row=1, col=3)
     fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.control_quantity_list,
                              mode='lines',
-                             name='Control Quantity', line=dict(color="green", width=2)), row=2, col=1)
+                             name='Moc', line=dict(color="green", width=2)), row=2, col=1)
     fig.add_trace(go.Scatter(x=[i for i in range(config.get_simulation_cycles())], y=config.heat_loss_list,
                              mode='lines',
                              name='Strata ciepła', line=dict(color="black", width=2)), row=2, col=2)

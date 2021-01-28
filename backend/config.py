@@ -4,8 +4,7 @@ import numpy as np
 class Config:
     time_constant = 555
     K = 0.06
-    Cw = 4200
-    Kp = 1110
+    Kp = 1100
     Ki = 0.05
     Kd = 5
     Tp = None
@@ -28,8 +27,8 @@ class Config:
     temperature_list = None
     sum_of_errors = 0
 
-    control_quantity_minimum = 0
-    control_quantity_maximum = 10
+    control_quantity_minimum = 50
+    control_quantity_maximum = 100000
 
     def get_sum_of_errors(self):
         return self.sum_of_errors
